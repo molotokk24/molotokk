@@ -1,7 +1,6 @@
 # molotokk
 Начните ремонт с правильных материалов!
 
-
 ?><!DOCTYPE html>
 <?php astra_html_before(); ?>
 <html <?php language_attributes(); ?>>
