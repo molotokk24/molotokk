@@ -1,0 +1,493 @@
+<?php
+/**
+ * Страница с описанием ламината "Дуб Апулия"
+ * 
+ * @version 1.1
+ * @updated 2023-11-15
+ */
+
+class LaminateProduct {
+    private $productData;
+    private $additionalInfo;
+    
+    public function __construct() {
+        $this->initializeProductData();
+    }
+    
+    private function initializeProductData() {
+        $this->productData = [
+            'title' => 'Ламинат "Дуб Апулия"',
+            'description' => 'Превосходное напольное покрытие, которое придает вашему интерьеру натуральный и элегантный вид. Создает теплую и уютную атмосферу в вашем доме.',
+            'features' => [
+                'thickness' => ['label' => 'Толщина', 'value' => '8 мм', 'icon' => '📏'],
+                'material' => ['label' => 'Материал', 'value' => 'Высококачественный ХДФ', 'icon' => '🌳'],
+                'installation' => ['label' => 'Укладка', 'value' => 'Система замков без пропитки', 'icon' => '🧩'],
+                'area' => ['label' => 'Площадь в упаковке', 'value' => '2.22 м²', 'icon' => '📦'],
+                'wear_class' => ['label' => 'Класс износостойкости', 'value' => '33 (коммерческое использование)', 'icon' => '🛡️'],
+                'water_resistant' => ['label' => 'Водостойкость', 'value' => false, 'icon' => '💧']
+            ],
+            'rooms' => [
+                'suitable' => ['спальня', 'гостиная', 'коридор'],
+                'not_suitable' => 'ванные комнаты и другие помещения с повышенной влажностью'
+            ],
+            'design' => [
+                'note' => 'Передает рисунок древесины с естественными вариациями оттенков и сучков',
+                'tip' => 'Чередуйте панели из разных пачек для естественного вида'
+            ]
+        ];
+        
+        $this->additionalInfo = [
+            'certificates' => 'Актуальные сертификаты доступны при обращении в магазин',
+            'color_warning' => 'Цвет на экране может отличаться от реального из-за настроек вашего устройства',
+            'contact' => 'Для дополнительной информации свяжитесь с нашим менеджером'
+        ];
+    }
+    
+    public function renderProductPage() {
+        $this->renderHTMLHeader();
+        $this->renderProductHeader();
+        $this->renderFeaturesSection();
+        $this->renderUsageRecommendations();
+        $this->renderDesignFeatures();
+        $this->renderAdditionalInfo();
+        $this->renderFooter();
+    }
+    
+    private function renderHTMLHeader() {
+        ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= htmlspecialchars($this->productData['description']) ?>">
+    <title><?= htmlspecialchars($this->productData['title']) ?> | Подробное описание</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --light-bg: #f9f9f9;
+            --text-color: #333;
+            --muted-text: #7f8c8d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        
+        h1, h2 {
+            color: var(--primary-color);
+            margin-top: 1.5em;
+        }
+        
+        h1 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+        }
+        
+        .feature-icon {
+            font-size: 1.2em;
+            margin-top: 3px;
+        }
+        
+        .warning {
+            color: var(--accent-color);
+            font-weight: 600;
+            background-color: rgba(231, 76, 60, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        
+        .note {
+            font-style: italic;
+            color: var(--muted-text);
+            border-left: 3px solid var(--muted-text);
+            padding-left: 10px;
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-right: 5px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: var(--muted-text);
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 600px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+        <?php
+    }
+    
+    private function renderProductHeader() {
+        ?>
+        <h1><?= htmlspecialchars($this->productData['title']) ?></h1>
+        <p><?= htmlspecialchars($this->productData['description']) ?></p>
+        <?php
+    }
+    
+    private function renderFeaturesSection() {
+        ?>
+        <h2><i class="fas fa-list-check"></i> Основные характеристики</h2>
+        <div class="feature-card">
+            <div class="feature-grid">
+                <?php foreach ($this->productData['features'] as $feature): ?>
+                <div class="feature-item">
+                    <span class="feature-icon"><?= $feature['icon'] ?></span>
+                    <div>
+                        <strong><?= htmlspecialchars($feature['label']) ?>:</strong><br>
+                        <?= is_bool($feature['value']) ? 
+                            ($feature['value'] ? 'Да' : 'Нет') : 
+                            htmlspecialchars($feature['value']) ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderUsageRecommendations() {
+        ?>
+        <h2><i class="fas fa-home"></i> Рекомендации по использованию</h2>
+        <p>Идеально подходит для: 
+            <?php foreach ($this->productData['rooms']['suitable'] as $room): ?>
+                <span class="tag"><?= htmlspecialchars($room) ?></span>
+            <?php endforeach; ?>
+        </p>
+        <p class="warning">
+            <i class="fas fa-exclamation-triangle"></i> 
+            Не рекомендуется для: <?= htmlspecialchars($this->productData['rooms']['not_suitable']) ?>
+        </p>
+        <?php
+    }
+    
+    private function renderDesignFeatures() {
+        ?>
+        <h2><i class="fas fa-palette"></i> Особенности дизайна</h2>
+        <p><?= htmlspecialchars($this->productData['design']['note']) ?></p>
+        <p class="note">
+            <i class="fas fa-lightbulb"></i> 
+            <?= htmlspecialchars($this->productData['design']['tip']) ?>
+        </p>
+        <?php
+    }
+    
+    private function renderAdditionalInfo() {
+        ?>
+        <h2><i class="fas fa-info-circle"></i> Дополнительная информация</h2>
+        <p><?= htmlspecialchars($this->additionalInfo['certificates']) ?></p>
+        <p class="note"><?= htmlspecialchars($this->additionalInfo['color_warning']) ?></p>
+        <p><i class="fas fa-phone"></i> <?= htmlspecialchars($this->additionalInfo['contact']) ?></p>
+        <?php
+    }
+    
+    private function renderFooter() {
+        ?>
+        <footer>
+            <p>© <?= date('Y') ?> Название компании. Все права защищены.</p>
+        </footer>
+</body>
+</html>
+        <?php
+    }
+}
+
+// Инициализация и отображение страницы
+$laminatePage = new LaminateProduct();
+$laminatePage->renderProductPage();
+?>
+<?php
+/**
+ * Страница с описанием ламината Artens "Сосна канадская светлая"
+ * 
+ * @version 1.1
+ * @updated 2023-11-15
+ */
+
+class LaminateProduct {
+    private $productData;
+    private $additionalInfo;
+    
+    public function __construct() {
+        $this->initializeProductData();
+    }
+    
+    private function initializeProductData() {
+        $this->productData = [
+            'title' => 'Ламинат Artens "Сосна канадская светлая"',
+            'description' => 'Высококачественное напольное покрытие для жилых и коммерческих помещений с высокой проходимостью. Матовая поверхность с текстурой натуральной древесины.',
+            'features' => [
+                'class' => ['label' => 'Класс эксплуатации', 'value' => '33 (коммерческое использование)', 'icon' => '🛡️'],
+                'material' => ['label' => 'Материал', 'value' => 'ХДФ', 'icon' => '🌳'],
+                'surface' => ['label' => 'Поверхность', 'value' => 'Матовая', 'icon' => '✨'],
+                'size' => ['label' => 'Размер панели', 'value' => '129,2 × 19,3 см', 'icon' => '📏'],
+                'thickness' => ['label' => 'Толщина', 'value' => '8 мм', 'icon' => '📐'],
+                'package' => ['label' => 'Панелей в упаковке', 'value' => '8 шт (1,9948 м²)', 'icon' => '📦'],
+                'weight' => ['label' => 'Вес упаковки', 'value' => '14,54 кг', 'icon' => '⚖️'],
+                'heating' => ['label' => 'Теплый пол', 'value' => 'Допускается до +28°C', 'icon' => '🔥'],
+                'country' => ['label' => 'Производство', 'value' => 'Россия', 'icon' => '🇷🇺']
+            ],
+            'advantages' => [
+                'Быстрый монтаж без клея благодаря специальным замкам',
+                'Реалистичная текстура натуральной древесины',
+                'Высокая устойчивость к механическим повреждениям',
+                'Долгий срок службы даже при интенсивной нагрузке'
+            ],
+            'design' => [
+                'note' => 'Передает рисунок древесины с естественными вариациями оттенков и сучков',
+                'tip' => 'Чередуйте панели из разных пачек для естественного вида'
+            ]
+        ];
+        
+        $this->additionalInfo = [
+            'certificates' => 'Актуальные сертификаты доступны при обращении в магазин',
+            'color_warning' => 'Цвет на экране может отличаться от реального из-за настроек вашего устройства',
+            'contact' => 'Для консультации по монтажу и эксплуатации свяжитесь с нашим специалистом'
+        ];
+    }
+    
+    public function renderProductPage() {
+        $this->renderHTMLHeader();
+        $this->renderProductHeader();
+        $this->renderFeaturesSection();
+        $this->renderAdvantages();
+        $this->renderDesignFeatures();
+        $this->renderAdditionalInfo();
+        $this->renderFooter();
+    }
+    
+    private function renderHTMLHeader() {
+        ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= htmlspecialchars($this->productData['description']) ?>">
+    <title><?= htmlspecialchars($this->productData['title']) ?> | Подробное описание</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #e67e22;
+            --light-bg: #f9f9f9;
+            --text-color: #333;
+            --muted-text: #7f8c8d;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        
+        h1, h2 {
+            color: var(--primary-color);
+            margin-top: 1.5em;
+        }
+        
+        h1 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px;
+        }
+        
+        .feature-icon {
+            font-size: 1.2em;
+            margin-top: 3px;
+        }
+        
+        .advantages-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        
+        .advantages-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .advantages-list li:before {
+            content: "✓";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .note {
+            font-style: italic;
+            color: var(--muted-text);
+            border-left: 3px solid var(--muted-text);
+            padding-left: 10px;
+        }
+        
+        footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: var(--muted-text);
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 600px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+        <?php
+    }
+    
+    private function renderProductHeader() {
+        ?>
+        <h1><?= htmlspecialchars($this->productData['title']) ?></h1>
+        <p><?= htmlspecialchars($this->productData['description']) ?></p>
+        <?php
+    }
+    
+    private function renderFeaturesSection() {
+        ?>
+        <h2><i class="fas fa-list-check"></i> Технические характеристики</h2>
+        <div class="feature-card">
+            <div class="feature-grid">
+                <?php foreach ($this->productData['features'] as $feature): ?>
+                <div class="feature-item">
+                    <span class="feature-icon"><?= $feature['icon'] ?></span>
+                    <div>
+                        <strong><?= htmlspecialchars($feature['label']) ?>:</strong><br>
+                        <?= is_bool($feature['value']) ? 
+                            ($feature['value'] ? 'Да' : 'Нет') : 
+                            htmlspecialchars($feature['value']) ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderAdvantages() {
+        ?>
+        <h2><i class="fas fa-star"></i> Преимущества</h2>
+        <ul class="advantages-list">
+            <?php foreach ($this->productData['advantages'] as $advantage): ?>
+                <li><?= htmlspecialchars($advantage) ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <?php
+    }
+    
+    private function renderDesignFeatures() {
+        ?>
+        <h2><i class="fas fa-palette"></i> Особенности дизайна</h2>
+        <p><?= htmlspecialchars($this->productData['design']['note']) ?></p>
+        <p class="note">
+            <i class="fas fa-lightbulb"></i> 
+            <?= htmlspecialchars($this->productData['design']['tip']) ?>
+        </p>
+        <?php
+    }
+    
+    private function renderAdditionalInfo() {
+        ?>
+        <h2><i class="fas fa-info-circle"></i> Дополнительная информация</h2>
+        <p><?= htmlspecialchars($this->additionalInfo['certificates']) ?></p>
+        <p class="note"><?= htmlspecialchars($this->additionalInfo['color_warning']) ?></p>
+        <p><i class="fas fa-phone"></i> <?= htmlspecialchars($this->additionalInfo['contact']) ?></p>
+        <?php
+    }
+    
+    private function renderFooter() {
+        ?>
+        <footer>
+            <p>© <?= date('Y') ?> Название компании. Все права защищены.</p>
+        </footer>
+</body>
+</html>
+        <?php
+    }
+}
+
+// Инициализация и отображение страницы
+$laminatePage = new LaminateProduct();
+$laminatePage->renderProductPage();
+?>
