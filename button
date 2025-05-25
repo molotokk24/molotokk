@@ -1,17 +1,17 @@
 /* Стилевое оформление интерактивного элемента добавления товаров */
 a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart {
-    background: #4CAF50; /* Цвет фона - насыщенный зеленый */
-    color: #ffffff !important; /* Белый текст */
-    padding: 0.75rem 1.25rem !important; /* Отступы в относительных единицах */
-    border-radius: 0.25rem !important; /* Скругление углов */
-    font-weight: 700 !important; /* Жирное начертание */
+    background: #6F8CCE; /* Цвет фона */
+    color: #ffffff ; /* Белый текст */
+    padding: 0.75rem 1.25rem ; /* Отступы в относительных единицах */
+    border-radius: 0.25rem ; /* Скругление углов */
+    font-weight: 700 ; /* Жирное начертание */
     text-transform: capitalize; /* Преобразование регистра */
-    border: 0 !important; /* Удаление границы */
+    border: 0 ; /* Удаление границы */
     transition: 
         background-color 0.3s ease-out,
         transform 0.2s ease,
-        box-shadow 0.3s linear !important; /* Плавные переходы */
-    display: inline-flex !important; /* Гибкое расположение */
+        box-shadow 0.3s linear ; /* Плавные переходы */
+    display: inline-flex ; /* Гибкое расположение */
     justify-content: center; /* Центрирование по горизонтали */
     align-items: center; /* Центрирование по вертикали */
     cursor: pointer; /* Курсор-указатель */
@@ -22,15 +22,15 @@ a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart {
 
 /* Эффекты при взаимодействии пользователя */
 a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart:hover {
-    background-color: #3d8b40 !important; /* Темно-зеленый при наведении */
-    transform: scale(1.02) translateY(-0.125rem) !important; /* Легкое увеличение */
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15) !important; /* Тень */
+    background-color: #334155 ; /* При наведении */
+    transform: scale(1.02) translateY(-0.125rem) ; /* Легкое увеличение */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15) ; /* Тень */
 }
 
 /* Состояние активного нажатия */
 a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart:active {
-    transform: scale(0.98) translateY(0.0625rem) !important; /* Эффект нажатия */
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1) !important; /* Уменьшенная тень */
+    transform: scale(0.98) translateY(0.0625rem) ; /* Эффект нажатия */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1) ; /* Уменьшенная тень */
 }
 
 /* Дополнительные элементы кнопки */
