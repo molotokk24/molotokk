@@ -146,3 +146,24 @@ function safe_output($text) {
 // Выводит текущую дату в формате "25 мая 2025"
 echo date('j F Y');
 ?>
+
+<?php
+function breadcrumbs() {
+    $separator = ' > ';
+    $home = 'Главная';
+    echo '<a href="/">'.$home.'</a>';
+    
+    if (is_category() || is_single()) {
+        echo $separator;
+        the_category(' • ');
+        if (is_single()) {
+            echo $separator;
+            the_title();
+        }
+    } elseif (is_page()) {
+        echo $separator;
+        echo the_title();
+    }
+}
+?>
+<div class="breadcrumbs"><?php breadcrumbs(); ?></div>
