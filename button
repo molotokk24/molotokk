@@ -44,3 +44,82 @@ a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart::after {
 a.button.product_type_simple.add_to_cart_button.ajax_add_to_cart:hover::after {
     transform: translateX(0.25rem);
 }
+
+/* ===== Общие стили для звезд рейтинга WooCommerce ===== */
+/* Базовый контейнер */
+.star-rating {
+    font-size: 1em; /* Размер звезд (1em = текущий размер шрифта) */
+    width: 5.4em; /* Ширина для 5 звезд */
+    line-height: 1;
+    display: inline-block;
+    position: relative;
+    margin: 0 auto;
+    font-family: star; /* Шрифт WooCommerce для звезд */
+}
+
+/* Пустые звезды */
+.star-rating::before {
+    content: "\73\73\73\73\73"; /* Коды пустых звезд */
+    color: #d3ced2; /* Цвет пустых звезд (серый) */
+    float: left;
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+/* Заполненные звезды */
+.star-rating span {
+    overflow: hidden;
+    float: left;
+    left: 0;
+    position: absolute;
+    top: 0;
+    padding-top: 1.5em;
+}
+
+.star-rating span::before {
+    content: "\53\53\53\53\53"; /* Коды заполненных звезд */
+    color: #ffb900; /* Цвет заполненных звезд (желто-оранжевый) */
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* ===== Кастомизация ===== */
+/* 1. Изменение цветов */
+.woocommerce .star-rating span::before {
+    color: #ff6d00 !important; /* Оранжевый */
+}
+
+.woocommerce .star-rating::before {
+    color: #e0e0e0 !important; /* Светло-серый */
+}
+
+/* 2. Размер и отступы */
+.woocommerce .star-rating {
+    font-size: 20px !important; /* Увеличенный размер */
+    margin: 8px 0 !important;
+}
+
+/* 3. Анимация при наведении */
+.woocommerce .star-rating:hover span::before {
+    color: #ff9100 !important;
+    text-shadow: 0 0 5px rgba(255, 153, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+/* 4. Для формы отзывов */
+#review_form .stars a {
+    color: #ffb900 !important;
+}
+
+#review_form .stars a:hover {
+    color: #ff6d00 !important;
+}
+
+/* 5. Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .woocommerce .star-rating {
+        font-size: 16px !important;
+    }
+}
