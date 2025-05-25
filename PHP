@@ -141,3 +141,8 @@ function safe_output($text) {
     </div>
 </body>
 </html>
+
+<?php
+// Выводит текущую дату в формате "25 мая 2025"
+echo date('j F Y');
+?>
