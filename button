@@ -220,3 +220,43 @@ del .woocommerce-Price-amount:before {
         font-size: 24px;
     }
 }
+/* Заголовок товара */
+.woocommerce ul.products li.product .woocommerce-loop-product__title {
+    color: #111111;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14.6px;
+    margin: 0 0 7.3px;
+    font-weight: 400;
+    line-height: 1.4;
+    text-decoration: none;
+    display: block;
+    padding: 0;
+}
+
+/* Описание товара */
+.woocommerce ul.products li.product .product-description {
+    color: #111111;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    margin: 5px 0 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 4.2em;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .woocommerce ul.products li.product .woocommerce-loop-product__title {
+        font-size: 14px;
+    }
+    
+    .woocommerce ul.products li.product .product-description {
+        font-size: 13px;
+        -webkit-line-clamp: 2;
+        min-height: 3.2em;
+    }
+}
