@@ -2018,3 +2018,500 @@ class ForestStairProduct {
 $stairPage = new ForestStairProduct();
 $stairPage->renderProductPage();
 ?>
+<?php
+/**
+ * Страница с описанием чердачной лестницы Dolle HOBBY 26
+ * 
+ * @version 1.7
+ * 
+ */
+
+class AtticLadderProduct {
+    private $productData;
+    private $technicalSpecs;
+    private $additionalFeatures;
+    
+    public function __construct() {
+        $this->initializeProductData();
+    }
+    
+    private function initializeProductData() {
+        $this->productData = [
+            'title' => 'Чердачная лестница Dolle HOBBY 26 120x60 см',
+            'description' => 'Функциональная складная конструкция для удобного доступа на чердак с теплоизолированным люком и безопасными ступенями.',
+            'productCode' => '5004601',
+            'features' => [
+                'type' => ['label' => 'Тип', 'value' => 'Складная чердачная', 'icon' => '🪜'],
+                'sections' => ['label' => 'Секции', 'value' => '3 складные', 'icon' => '🔗'],
+                'load' => ['label' => 'Нагрузка', 'value' => '150 кг', 'icon' => '🏋️'],
+                'angle' => ['label' => 'Угол наклона', 'value' => '60°', 'icon' => '📐'],
+                'material' => ['label' => 'Материал', 'value' => 'Дерево', 'icon' => '🌲'],
+                'steps' => ['label' => 'Ступени', 'value' => 'Нескользящие деревянные', 'icon' => '👣'],
+                'hatch' => ['label' => 'Люк', 'value' => 'С теплоизоляцией', 'icon' => '🚪'],
+                'extension' => ['label' => 'Наращивание', 'value' => 'Возможно добавление секций', 'icon' => '➕']
+            ],
+            'dimensions' => [
+                'closed' => ['label' => 'В сложенном виде', 'value' => '120×60 см'],
+                'opened' => ['label' => 'В разложенном виде', 'value' => 'Длина 164.5 см'],
+                'box' => ['label' => 'Короб конструкции', 'value' => '1175×115×576 мм']
+            ],
+            'advantages' => [
+                'Компактность в сложенном состоянии',
+                'Надежная блокировка в поднятом положении',
+                'Теплоизоляция чердачного люка',
+                'Безопасные нескользящие ступени',
+                'Возможность покраски под интерьер',
+                'Прочная деревянная конструкция',
+                'Возможность наращивания высоты',
+                'Легкий и удобный доступ на чердак'
+            ]
+        ];
+        
+        $this->technicalSpecs = [
+            'construction' => [
+                'Тип конструкции' => '3-секционная складная',
+                'Механизм открывания' => 'Плавный, с пружинами',
+                'Блокировка' => 'Крюк в поднятом состоянии'
+            ],
+            'materials' => [
+                'Основной материал' => 'Качественная древесина',
+                'Ступени' => 'Шероховатая поверхность',
+                'Уплотнитель' => 'Теплоизоляция по периметру'
+            ],
+            'installation' => [
+                'Рекомендуемая высота' => 'До 2.8 м',
+                'Время монтажа' => '2-3 часа',
+                'Дополнительные секции' => 'Доступны для покупки'
+            ]
+        ];
+        
+        $this->additionalFeatures = [
+            'safety' => 'Ступени с противоскользящим покрытием',
+            'customization' => 'Возможность покраски в любой цвет',
+            'thermal' => 'Теплоизоляция люка предотвращает потери тепла',
+            'space' => 'Не занимает место в сложенном состоянии'
+        ];
+    }
+    
+    public function renderProductPage() {
+        $this->renderHTMLHeader();
+        $this->renderProductHeader();
+        $this->renderFeaturesSection();
+        $this->renderDimensions();
+        $this->renderAdvantages();
+        $this->renderTechnicalSpecs();
+        $this->renderAdditionalFeatures();
+        $this->renderGallerySection();
+        $this->renderFooter();
+    }
+    
+    private function renderHTMLHeader() {
+        ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= htmlspecialchars($this->productData['description']) ?>">
+    <title><?= htmlspecialchars($this->productData['title']) ?> | Описание</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #5d4037;
+            --secondary-color: #8d6e63;
+            --accent-color: #d7ccc8;
+            --light-bg: #efebe9;
+            --text-color: #3e2723;
+            --muted-text: #6d4c41;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-top: 1.8em;
+        }
+        
+        h1 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            margin: 35px 0 20px;
+        }
+        
+        .product-code {
+            background-color: var(--light-bg);
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: var(--muted-text);
+        }
+        
+        .feature-card {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 1.8em;
+            color: var(--secondary-color);
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .dimensions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .dimension-card {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .dimension-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 5px;
+        }
+        
+        .advantages-list {
+            margin: 30px 0;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .advantages-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 40px;
+            list-style: none;
+            font-size: 1.05em;
+        }
+        
+        .advantages-list li:before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.8em;
+            line-height: 0.9;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .specs-card {
+            background-color: var(--light-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+        }
+        
+        .specs-card h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            border-bottom: 1px dashed var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        
+        .specs-item {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dotted var(--accent-color);
+        }
+        
+        .specs-value {
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: right;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .feature-box {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .feature-box i {
+            font-size: 1.5em;
+            color: var(--secondary-color);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            height: 200px;
+            background-color: #f5f5f5;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--accent-color);
+            color: var(--muted-text);
+            font-size: 0.95em;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .feature-grid, .dimensions-grid, .advantages-list, 
+            .specs-grid, .features-grid, .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+        <?php
+    }
+    
+    private function renderProductHeader() {
+        ?>
+        <h1><?= htmlspecialchars($this->productData['title']) ?></h1>
+        <p style="font-size: 1.1em;"><?= htmlspecialchars($this->productData['description']) ?></p>
+        <div class="product-code">
+            Артикул: <?= htmlspecialchars($this->productData['productCode']) ?>
+        </div>
+        <?php
+    }
+    
+    private function renderFeaturesSection() {
+        ?>
+        <h2><i class="fas fa-info-circle"></i> Основные характеристики</h2>
+        <div class="feature-card">
+            <div class="feature-grid">
+                <?php foreach ($this->productData['features'] as $feature): ?>
+                <div class="feature-item">
+                    <span class="feature-icon"><?= $feature['icon'] ?></span>
+                    <div>
+                        <strong><?= htmlspecialchars($feature['label']) ?>:</strong><br>
+                        <?= htmlspecialchars($feature['value']) ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderDimensions() {
+        ?>
+        <h2><i class="fas fa-ruler-combined"></i> Габариты</h2>
+        <div class="dimensions-grid">
+            <?php foreach ($this->productData['dimensions'] as $dimension): ?>
+            <div class="dimension-card">
+                <h3 style="margin-top: 0;"><?= htmlspecialchars($dimension['label']) ?></h3>
+                <div class="dimension-value"><?= htmlspecialchars($dimension['value']) ?></div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <?php
+    }
+    
+    private function renderAdvantages() {
+        ?>
+        <h2><i class="fas fa-check-double"></i> Преимущества</h2>
+        <ul class="advantages-list">
+            <?php foreach ($this->productData['advantages'] as $advantage): ?>
+                <li><?= htmlspecialchars($advantage) ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <?php
+    }
+    
+    private function renderTechnicalSpecs() {
+        ?>
+        <h2><i class="fas fa-clipboard-list"></i> Технические характеристики</h2>
+        <div class="specs-grid">
+            <div class="specs-card">
+                <h3><i class="fas fa-cube"></i> Конструкция</h3>
+                <?php foreach ($this->technicalSpecs['construction'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="specs-card">
+                <h3><i class="fas fa-tree"></i> Материалы</h3>
+                <?php foreach ($this->technicalSpecs['materials'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="specs-card">
+                <h3><i class="fas fa-tools"></i> Установка</h3>
+                <?php foreach ($this->technicalSpecs['installation'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderAdditionalFeatures() {
+        ?>
+        <h2><i class="fas fa-star"></i> Дополнительные особенности</h2>
+        <div class="features-grid">
+            <div class="feature-box">
+                <i class="fas fa-safety-boot"></i>
+                <div>
+                    <h3 style="margin: 0 0 5px 0;">Безопасность</h3>
+                    <p><?= htmlspecialchars($this->additionalFeatures['safety']) ?></p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-paint-brush"></i>
+                <div>
+                    <h3 style="margin: 0 0 5px 0;">Индивидуальный дизайн</h3>
+                    <p><?= htmlspecialchars($this->additionalFeatures['customization']) ?></p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-temperature-low"></i>
+                <div>
+                    <h3 style="margin: 0 0 5px 0;">Теплоизоляция</h3>
+                    <p><?= htmlspecialchars($this->additionalFeatures['thermal']) ?></p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-arrows-alt-v"></i>
+                <div>
+                    <h3 style="margin: 0 0 5px 0;">Экономия пространства</h3>
+                    <p><?= htmlspecialchars($this->additionalFeatures['space']) ?></p>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderGallerySection() {
+        ?>
+        <h2><i class="fas fa-images"></i> Галерея</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://example.com/dolle-closed.jpg" alt="Лестница в сложенном состоянии">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/dolle-opened.jpg" alt="Лестница в разложенном виде">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/dolle-steps.jpg" alt="Нескользящие ступени">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/dolle-hatch.jpg" alt="Теплоизолированный люк">
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderFooter() {
+        ?>
+        <footer>
+            <p>© <?= date('Y') ?> Чердачная лестница Dolle HOBBY 26 - удобный доступ на чердак с экономией пространства.</p>
+        </footer>
+</body>
+</html>
+        <?php
+    }
+}
+
+// Инициализация и отображение страницы
+$ladderPage = new AtticLadderProduct();
+$ladderPage->renderProductPage();
+?>
