@@ -2515,3 +2515,489 @@ class AtticLadderProduct {
 $ladderPage = new AtticLadderProduct();
 $ladderPage->renderProductPage();
 ?>
+<?php
+/**
+ * Страница с описанием дюбеля с грибовидной головкой
+ * 
+ * @version 1.8
+ * 
+ */
+
+class MushroomDowelsProduct {
+    private $productData;
+    private $technicalSpecs;
+    private $usageInfo;
+    
+    public function __construct() {
+        $this->initializeProductData();
+    }
+    
+    private function initializeProductData() {
+        $this->productData = [
+            'title' => 'Дюбель с грибовидной головкой 6×40 мм',
+            'description' => 'Надежный крепежный элемент для плотных оснований с удобной грибовидной манжетой, предотвращающей проваливание.',
+            'features' => [
+                'head' => ['label' => 'Тип головки', 'value' => 'Грибовидная манжета', 'icon' => '🍄'],
+                'material' => ['label' => 'Материал', 'value' => 'Полипропилен', 'icon' => '🧪'],
+                'size' => ['label' => 'Размер', 'value' => '6×40 мм', 'icon' => '📏'],
+                'quantity' => ['label' => 'Количество', 'value' => '100 шт в комплекте', 'icon' => '🧮'],
+                'mounting' => ['label' => 'Монтаж', 'value' => 'Легкий', 'icon' => '🔨'],
+                'removal' => ['label' => 'Демонтаж', 'value' => 'Простой', 'icon' => '🔄'],
+                'durability' => ['label' => 'Срок службы', 'value' => 'Долговечный', 'icon' => '⏳']
+            ],
+            'advantages' => [
+                'Предотвращает проваливание в отверстие',
+                'Легко извлекается при необходимости',
+                'Надежное крепление в плотных основаниях',
+                'Устойчивость к коррозии',
+                'Широкая манжета распределяет нагрузку',
+                'Подходит для многократного использования',
+                'Экономичная упаковка 100 шт',
+                'Универсальное применение'
+            ],
+            'dimensions' => [
+                'diameter' => '6 мм',
+                'length' => '40 мм',
+                'head_diameter' => '12 мм (грибовидная часть)'
+            ]
+        ];
+        
+        $this->technicalSpecs = [
+            'materials' => [
+                'Основной материал' => 'Полипропилен',
+                'Цвет' => 'Стандартный белый',
+                'Температурный диапазон' => 'От -20°C до +80°C'
+            ],
+            'compatibility' => [
+                'Бетон' => 'Оптимально',
+                'Полнотелый кирпич' => 'Рекомендуется',
+                'Газобетон' => 'Не рекомендуется',
+                'Гипсокартон' => 'Не подходит'
+            ],
+            'characteristics' => [
+                'Минимальная глубина отверстия' => '45 мм',
+                'Рекомендуемый диаметр сверла' => '6 мм',
+                'Максимальная нагрузка' => 'Зависит от основания'
+            ]
+        ];
+        
+        $this->usageInfo = [
+            'step1' => 'Просверлить отверстие диаметром 6 мм на глубину 45 мм',
+            'step2' => 'Очистить отверстие от пыли',
+            'step3' => 'Вставить дюбель до упора грибовидной головкой',
+            'step4' => 'Завернуть шуруп или винт',
+            'warning' => 'Не использовать в рыхлых или хрупких материалах'
+        ];
+    }
+    
+    public function renderProductPage() {
+        $this->renderHTMLHeader();
+        $this->renderProductHeader();
+        $this->renderFeaturesSection();
+        $this->renderAdvantages();
+        $this->renderTechnicalSpecs();
+        $this->renderUsageInstructions();
+        $this->renderGallerySection();
+        $this->renderFooter();
+    }
+    
+    private function renderHTMLHeader() {
+        ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= htmlspecialchars($this->productData['description']) ?>">
+    <title><?= htmlspecialchars($this->productData['title']) ?> | Технические характеристики</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #455a64;
+            --secondary-color: #607d8b;
+            --accent-color: #b0bec5;
+            --light-bg: #eceff1;
+            --text-color: #263238;
+            --muted-text: #546e7a;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-top: 1.8em;
+        }
+        
+        h1 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            margin: 35px 0 20px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 1.8em;
+            color: var(--secondary-color);
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .advantages-list {
+            margin: 30px 0;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .advantages-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 40px;
+            list-style: none;
+            font-size: 1.05em;
+        }
+        
+        .advantages-list li:before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.8em;
+            line-height: 0.9;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .specs-card {
+            background-color: var(--light-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+        }
+        
+        .specs-card h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            border-bottom: 1px dashed var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        
+        .specs-item {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dotted var(--accent-color);
+        }
+        
+        .specs-value {
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: right;
+        }
+        
+        .usage-steps {
+            background-color: var(--light-bg);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .usage-step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .step-number {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 5px solid #ffa000;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+            font-weight: 500;
+        }
+        
+        .dims-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .dim-card {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .dim-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            height: 200px;
+            background-color: #f5f5f5;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--accent-color);
+            color: var(--muted-text);
+            font-size: 0.95em;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .feature-grid, .advantages-list, .specs-grid, 
+            .dims-grid, .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+        <?php
+    }
+    
+    private function renderProductHeader() {
+        ?>
+        <h1><?= htmlspecialchars($this->productData['title']) ?></h1>
+        <p style="font-size: 1.1em;"><?= htmlspecialchars($this->productData['description']) ?></p>
+        <?php
+    }
+    
+    private function renderFeaturesSection() {
+        ?>
+        <h2><i class="fas fa-info-circle"></i> Основные характеристики</h2>
+        <div class="feature-card">
+            <div class="feature-grid">
+                <?php foreach ($this->productData['features'] as $feature): ?>
+                <div class="feature-item">
+                    <span class="feature-icon"><?= $feature['icon'] ?></span>
+                    <div>
+                        <strong><?= htmlspecialchars($feature['label']) ?>:</strong><br>
+                        <?= htmlspecialchars($feature['value']) ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <h3 style="margin-top: 30px;"><i class="fas fa-ruler"></i> Размеры</h3>
+            <div class="dims-grid">
+                <div class="dim-card">
+                    <div>Диаметр</div>
+                    <div class="dim-value"><?= htmlspecialchars($this->productData['dimensions']['diameter']) ?></div>
+                </div>
+                <div class="dim-card">
+                    <div>Длина</div>
+                    <div class="dim-value"><?= htmlspecialchars($this->productData['dimensions']['length']) ?></div>
+                </div>
+                <div class="dim-card">
+                    <div>Головка</div>
+                    <div class="dim-value"><?= htmlspecialchars($this->productData['dimensions']['head_diameter']) ?></div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderAdvantages() {
+        ?>
+        <h2><i class="fas fa-check-circle"></i> Преимущества</h2>
+        <ul class="advantages-list">
+            <?php foreach ($this->productData['advantages'] as $advantage): ?>
+                <li><?= htmlspecialchars($advantage) ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <?php
+    }
+    
+    private function renderTechnicalSpecs() {
+        ?>
+        <h2><i class="fas fa-clipboard-list"></i> Технические характеристики</h2>
+        <div class="specs-grid">
+            <div class="specs-card">
+                <h3><i class="fas fa-flask"></i> Материалы</h3>
+                <?php foreach ($this->technicalSpecs['materials'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="specs-card">
+                <h3><i class="fas fa-check-double"></i> Совместимость</h3>
+                <?php foreach ($this->technicalSpecs['compatibility'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="specs-card">
+                <h3><i class="fas fa-tachometer-alt"></i> Параметры</h3>
+                <?php foreach ($this->technicalSpecs['characteristics'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderUsageInstructions() {
+        ?>
+        <h2><i class="fas fa-tools"></i> Инструкция по применению</h2>
+        <div class="usage-steps">
+            <?php foreach ($this->usageInfo as $key => $step): ?>
+                <?php if(strpos($key, 'step') === 0): ?>
+                <div class="usage-step">
+                    <div class="step-number"><?= substr($key, 4) ?></div>
+                    <div><?= htmlspecialchars($step) ?></div>
+                </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+        
+        <div class="warning-box">
+            <i class="fas fa-exclamation-triangle"></i> 
+            <?= htmlspecialchars($this->usageInfo['warning']) ?>
+        </div>
+        <?php
+    }
+    
+    private function renderGallerySection() {
+        ?>
+        <h2><i class="fas fa-images"></i> Галерея</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://example.com/dowel-package.jpg" alt="Упаковка дюбелей">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/dowel-closeup.jpg" alt="Крупный план дюбеля">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/dowel-installed.jpg" alt="Установленный дюбель">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/dowel-head.jpg" alt="Грибовидная головка">
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderFooter() {
+        ?>
+        <footer>
+            <p>© <?= date('Y') ?> Дюбель с грибовидной головкой - надежное крепление для плотных оснований.</p>
+        </footer>
+</body>
+</html>
+        <?php
+    }
+}
+
+// Инициализация и отображение страницы
+$dowelsPage = new MushroomDowelsProduct();
+$dowelsPage->renderProductPage();
+?>
