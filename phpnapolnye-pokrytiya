@@ -76,22 +76,22 @@ class LaminateProduct {
         
         body {
             font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1.5;
             color: var(--text-color);
-            max-width: 900px;
+            max-width: 902px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 21px;
             background-color: #fff;
         }
         
         h1, h2 {
             color: var(--primary-color);
-            margin-top: 1.5em;
+            margin-top: 1.6em;
         }
         
         h1 {
             border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
+            padding-bottom: 11px;
         }
         
         .feature-card {
@@ -141,21 +141,21 @@ class LaminateProduct {
             display: inline-block;
             background-color: var(--secondary-color);
             color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            margin-right: 5px;
+            padding: 3px 7px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-right: 4px;
         }
         
         footer {
-            margin-top: 40px;
-            padding-top: 20px;
+            margin-top: 41px;
+            padding-top: 22px;
             border-top: 1px solid #eee;
             color: var(--muted-text);
             font-size: 0.9em;
         }
         
-        @media (max-width: 600px) {
+        @media (max-width: 605px) {
             .feature-grid {
                 grid-template-columns: 1fr;
             }
