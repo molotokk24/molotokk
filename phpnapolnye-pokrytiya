@@ -3,7 +3,7 @@
  * Страница с описанием ламината "Дуб Апулия"
  * 
  * @version 1.1
- * @updated 2023-11-15
+ * 
  */
 
 class LaminateProduct {
@@ -249,7 +249,7 @@ $laminatePage->renderProductPage();
  * Страница с описанием ламината Artens "Сосна канадская светлая"
  * 
  * @version 1.1
- * @updated 2023-11-15
+ * 
  */
 
 class LaminateProduct {
@@ -497,7 +497,7 @@ $laminatePage->renderProductPage();
  * Страница с описанием ламината "Дуб Ория"
  * 
  * @version 1.2
- * @updated 2023-11-15
+ *
  */
 
 class LaminateProduct {
@@ -1146,6 +1146,432 @@ class UnderlayProduct {
 }
 
 // Инициализация и отображение страницы
+
 $underlayPage = new UnderlayProduct();
 $underlayPage->renderProductPage();
+?>
+<?php
+/**
+ * Страница с описанием винтовой лестницы "Калгари"
+ * 
+ * @version 1.4
+ * 
+ */
+
+class StairProduct {
+    private $productData;
+    private $technicalSpecs;
+    private $additionalInfo;
+    
+    public function __construct() {
+        $this->initializeProductData();
+    }
+    
+    private function initializeProductData() {
+        $this->productData = [
+            'title' => 'Винтовая лестница "Калгари"',
+            'description' => 'Компактная и эргономичная лестница из светлого бука с лакированными ступенями. Универсальное решение для современных интерьеров.',
+            'features' => [
+                'material' => ['label' => 'Материал ступеней', 'value' => 'Бук мультиплекс, лакированный', 'icon' => '🌳'],
+                'color' => ['label' => 'Цвет', 'value' => 'Светлый натуральный', 'icon' => '🎨'],
+                'load' => ['label' => 'Нагрузка на ступень', 'value' => '234 кг', 'icon' => '🏋️'],
+                'step' => ['label' => 'Шаг ступеней', 'value' => 'От 204 см (регулируемый)', 'icon' => '📏'],
+                'handrail' => ['label' => 'Поручень', 'value' => 'Цельный', 'icon' => '👐'],
+                'mounting' => ['label' => 'Варианты монтажа', 'value' => 'По/против часовой стрелки', 'icon' => '🔄'],
+                'opening' => ['label' => 'Тип проёма', 'value' => 'Круглый или квадратный', 'icon' => '⏺️'],
+                'package' => ['label' => 'Комплектация', 'value' => 'Все детали в одной коробке', 'icon' => '📦']
+            ],
+            'advantages' => [
+                'Компактность и экономия пространства',
+                'Современный лаконичный дизайн',
+                'Универсальность для любого интерьера',
+                'Продуманная эргономика',
+                'Регулируемый шаг ступеней',
+                'Не требует дополнительных покупок',
+                'Простота установки',
+                'Надежность и долговечность'
+            ],
+            'dimensions' => [
+                'diameter' => 'Зависит от конфигурации',
+                'height' => 'Регулируется под этаж',
+                'weight' => 'Более 25 кг (требуется 2 человека для переноса)'
+            ]
+        ];
+        
+        $this->technicalSpecs = [
+            'construction' => [
+                'Тип конструкции' => 'Винтовая',
+                'Материал каркаса' => 'Металл с порошковым покрытием',
+                'Отделка' => 'Лак на водной основе'
+            ],
+            'safety' => [
+                'Максимальная нагрузка' => '234 кг на ступень',
+                'Угол подъема' => 'Комфортный для передвижения',
+                'Высота перил' => 'Стандартная 90-100 см'
+            ],
+            'installation' => [
+                'Время монтажа' => '4-6 часов',
+                'Необходимые инструменты' => 'Базовый набор',
+                'Дополнительные элементы' => 'Не требуются'
+            ]
+        ];
+        
+        $this->additionalInfo = [
+            'warning' => 'Товар весом более 25 кг необходимо перемещать минимум двумя людьми или с помощью механизированного оборудования',
+            'delivery' => 'Доставляется в полной комплектации',
+            'warranty' => 'Гарантия 24 месяца'
+        ];
+    }
+    
+    public function renderProductPage() {
+        $this->renderHTMLHeader();
+        $this->renderProductHeader();
+        $this->renderFeaturesSection();
+        $this->renderAdvantages();
+        $this->renderTechnicalSpecs();
+        $this->renderGallerySection();
+        $this->renderAdditionalInfo();
+        $this->renderFooter();
+    }
+    
+    private function renderHTMLHeader() {
+        ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= htmlspecialchars($this->productData['description']) ?>">
+    <title><?= htmlspecialchars($this->productData['title']) ?> | Подробное описание</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #5d4037;
+            --secondary-color: #8d6e63;
+            --accent-color: #d7ccc8;
+            --light-bg: #efebe9;
+            --text-color: #3e2723;
+            --muted-text: #6d4c41;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-top: 1.8em;
+        }
+        
+        h1 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 24px;
+        }
+        
+        h2 {
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 14px;
+            margin: 35px 0 20px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .feature-icon {
+            font-size: 1.8em;
+            color: var(--secondary-color);
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .advantages-list {
+            margin: 30px 0;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .advantages-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 40px;
+            list-style: none;
+            font-size: 1.05em;
+        }
+        
+        .advantages-list li:before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.8em;
+            line-height: 0.9;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .specs-card {
+            background-color: var(--light-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+        }
+        
+        .specs-card h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            border-bottom: 1px dashed var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        
+        .specs-item {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dotted #d7ccc8;
+        }
+        
+        .specs-value {
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: right;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            height: 200px;
+            background-color: #f5f5f5;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .warning {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #c62828;
+            margin: 30px 0;
+            font-weight: 500;
+        }
+        
+        .dimensions-box {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #d7ccc8;
+            color: var(--muted-text);
+            font-size: 0.95em;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .feature-grid, .advantages-list, .specs-grid, .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+        <?php
+    }
+    
+    private function renderProductHeader() {
+        ?>
+        <h1><?= htmlspecialchars($this->productData['title']) ?></h1>
+        <p style="font-size: 1.1em;"><?= htmlspecialchars($this->productData['description']) ?></p>
+        <?php
+    }
+    
+    private function renderFeaturesSection() {
+        ?>
+        <h2><i class="fas fa-cogs"></i> Основные характеристики</h2>
+        <div class="feature-card">
+            <div class="feature-grid">
+                <?php foreach ($this->productData['features'] as $feature): ?>
+                <div class="feature-item">
+                    <span class="feature-icon"><?= $feature['icon'] ?></span>
+                    <div>
+                        <strong><?= htmlspecialchars($feature['label']) ?>:</strong><br>
+                        <?= htmlspecialchars($feature['value']) ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="dimensions-box">
+                <h3 style="margin-top: 0;"><i class="fas fa-ruler-combined"></i> Габариты:</h3>
+                <p><strong>Диаметр:</strong> <?= htmlspecialchars($this->productData['dimensions']['diameter']) ?></p>
+                <p><strong>Высота:</strong> <?= htmlspecialchars($this->productData['dimensions']['height']) ?></p>
+                <p><strong>Вес:</strong> <?= htmlspecialchars($this->productData['dimensions']['weight']) ?></p>
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderAdvantages() {
+        ?>
+        <h2><i class="fas fa-star"></i> Преимущества лестницы "Калгари"</h2>
+        <ul class="advantages-list">
+            <?php foreach ($this->productData['advantages'] as $advantage): ?>
+                <li><?= htmlspecialchars($advantage) ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <?php
+    }
+    
+    private function renderTechnicalSpecs() {
+        ?>
+        <h2><i class="fas fa-clipboard-list"></i> Технические параметры</h2>
+        <div class="specs-grid">
+            <div class="specs-card">
+                <h3><i class="fas fa-cube"></i> Конструкция</h3>
+                <?php foreach ($this->technicalSpecs['construction'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="specs-card">
+                <h3><i class="fas fa-shield-alt"></i> Безопасность</h3>
+                <?php foreach ($this->technicalSpecs['safety'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="specs-card">
+                <h3><i class="fas fa-tools"></i> Монтаж</h3>
+                <?php foreach ($this->technicalSpecs['installation'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderGallerySection() {
+        ?>
+        <h2><i class="fas fa-images"></i> Примеры установки</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://example.com/stairs1.jpg" alt="Лестница Калгари в интерьере">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/stairs2.jpg" alt="Детали лестницы">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/stairs3.jpg" alt="Лестница в квадратном проёме">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/stairs4.jpg" alt="Общий вид лестницы">
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderAdditionalInfo() {
+        ?>
+        <div class="warning">
+            <i class="fas fa-exclamation-triangle"></i> 
+            <?= htmlspecialchars($this->additionalInfo['warning']) ?>
+        </div>
+        
+        <p><i class="fas fa-truck"></i> <?= htmlspecialchars($this->additionalInfo['delivery']) ?></p>
+        <p><i class="fas fa-certificate"></i> <?= htmlspecialchars($this->additionalInfo['warranty']) ?></p>
+        <?php
+    }
+    
+    private function renderFooter() {
+        ?>
+        <footer>
+            <p>© <?= date('Y') ?> Винтовая лестница "Калгари" - идеальное решение для современного дома.</p>
+        </footer>
+</body>
+</html>
+        <?php
+    }
+}
+
+// Инициализация и отображение страницы
+$stairPage = new StairProduct();
+$stairPage->renderProductPage();
 ?>
