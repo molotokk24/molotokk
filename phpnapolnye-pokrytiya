@@ -1,10 +1,6 @@
 <?php
 /**
  * Страница с описанием ламината "Дуб Апулия"
- * 
- * 
- * 
- */
 
 class LaminateProduct {
     private $productData;
