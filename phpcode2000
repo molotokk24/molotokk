@@ -92,9 +92,9 @@ class LaminateProduct {
         
         .feature-card {
             background-color: var(--light-bg);
-            padding: 20px;
+            padding: 21px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 21px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         
@@ -113,7 +113,7 @@ class LaminateProduct {
         }
         
         .feature-icon {
-            font-size: 1.2em;
+            font-size: 1.3em;
             margin-top: 3px;
         }
         
@@ -151,7 +151,7 @@ class LaminateProduct {
             font-size: 0.9em;
         }
         
-        @media (max-width: 605px) {
+        @media (max-width: 603px) {
             .feature-grid {
                 grid-template-columns: 1fr;
             }
@@ -374,9 +374,9 @@ class LaminateProduct {
         }
         
         .advantages-list li {
-            margin-bottom: 10px;
+            margin-bottom: 11px;
             position: relative;
-            padding-left: 25px;
+            padding-left: 24px;
         }
         
         .advantages-list li:before {
@@ -391,7 +391,7 @@ class LaminateProduct {
             font-style: italic;
             color: var(--muted-text);
             border-left: 3px solid var(--muted-text);
-            padding-left: 10px;
+            padding-left: 11px;
         }
         
         footer {
@@ -2995,3 +2995,750 @@ class MushroomDowelsProduct {
 $dowelsPage = new MushroomDowelsProduct();
 $dowelsPage->renderProductPage();
 ?>
+<?php
+/**
+ * Страница с описанием фосфатированных саморезов по дереву
+ * 
+ * 
+ * 
+ */
+
+class PhosphatedScrewsProduct {
+    private $productData;
+    private $technicalSpecs;
+    private $usageInfo;
+    
+    public function __construct() {
+        $this->initializeProductData();
+    }
+    
+    private function initializeProductData() {
+        $this->productData = [
+            'title' => 'Саморезы по дереву фосфатированные 4.2×75 мм',
+            'description' => 'Прочные крепежные изделия с фосфатным покрытием для надежной фиксации деревянных конструкций. Потайная головка и острый наконечник для легкого монтажа.',
+            'features' => [
+                'type' => ['label' => 'Тип', 'value' => 'Саморез по дереву', 'icon' => '🔩'],
+                'coating' => ['label' => 'Покрытие', 'value' => 'Фосфатированное', 'icon' => '🛡️'],
+                'size' => ['label' => 'Размер', 'value' => '4.2×75 мм', 'icon' => '📏'],
+                'head' => ['label' => 'Головка', 'value' => 'Потайная', 'icon' => '⬇️'],
+                'tip' => ['label' => 'Наконечник', 'value' => 'Острый', 'icon' => '⚡'],
+                'material' => ['label' => 'Материал', 'value' => 'Сталь', 'icon' => '🛠️'],
+                'weight' => ['label' => 'Вес упаковки', 'value' => '1 кг', 'icon' => '🏋️'],
+                'mounting' => ['label' => 'Монтаж', 'value' => 'Без предварительного сверления', 'icon' => '🚀']
+            ],
+            'advantages' => [
+                'Широкая сфера применения',
+                'Быстрый и простой монтаж',
+                'Надежная фиксация элементов',
+                'Устойчивость к деформации',
+                'Защита от коррозии',
+                'Прочность и долговечность',
+                'Оптимальное вхождение в материал',
+                'Универсальность использования'
+            ],
+            'dimensions' => [
+                'diameter' => '4.2 мм',
+                'length' => '75 мм',
+                'thread_pitch' => 'Крупная резьба'
+            ]
+        ];
+        
+        $this->technicalSpecs = [
+            'materials' => [
+                'Основной материал' => 'Углеродистая сталь',
+                'Покрытие' => 'Фосфатное',
+                'Твердость' => 'HRC 45-50'
+            ],
+            'performance' => [
+                'Макс. толщина соединения' => 'До 50 мм',
+                'Рекомендуемые материалы' => 'Дерево, ДСП, фанера',
+                'Температурный диапазон' => 'От -50°C до +120°C'
+            ],
+            'packaging' => [
+                'Количество в упаковке' => '~200 шт (при весе 1 кг)',
+                'Вид упаковки' => 'Пластиковая коробка',
+                'Хранение' => 'В сухом помещении'
+            ]
+        ];
+        
+        $this->usageInfo = [
+            'step1' => 'Выровнять соединяемые поверхности',
+            'step2' => 'При необходимости сделать направляющее отверстие (для твердых пород)',
+            'step3' => 'Установить саморез под прямым углом',
+            'step4' => 'Завернуть шуруповертом или отверткой до утопления головки',
+            'tip' => 'Для лучшего вхождения можно использовать воск или мыло',
+            'warning' => 'Не применять для ответственных несущих конструкций'
+        ];
+    }
+    
+    public function renderProductPage() {
+        $this->renderHTMLHeader();
+        $this->renderProductHeader();
+        $this->renderFeaturesSection();
+        $this->renderAdvantages();
+        $this->renderTechnicalSpecs();
+        $this->renderUsageInstructions();
+        $this->renderGallerySection();
+        $this->renderFooter();
+    }
+    
+    private function renderHTMLHeader() {
+        ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= htmlspecialchars($this->productData['description']) ?>">
+    <title><?= htmlspecialchars($this->productData['title']) ?> | Технические характеристики</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #37474f;
+            --secondary-color: #546e7a;
+            --accent-color: #b0bec5;
+            --light-bg: #eceff1;
+            --text-color: #263238;
+            --muted-text: #546e7a;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-top: 1.8em;
+        }
+        
+        h1 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            margin: 35px 0 20px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 1.8em;
+            color: var(--secondary-color);
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .advantages-list {
+            margin: 30px 0;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .advantages-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 40px;
+            list-style: none;
+            font-size: 1.05em;
+        }
+        
+        .advantages-list li:before {
+            content: "•";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.8em;
+            line-height: 0.9;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .specs-card {
+            background-color: var(--light-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+        }
+        
+        .specs-card h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            border-bottom: 1px dashed var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        
+        .specs-item {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dotted var(--accent-color);
+        }
+        
+        .specs-value {
+            font-weight: bold;
+            color: var(--primary-color);
+            text-align: right;
+        }
+        
+        .usage-steps {
+            background-color: var(--light-bg);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .usage-step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .step-number {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .tip-box {
+            background-color: #e8f5e9;
+            border-left: 5px solid #43a047;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .warning-box {
+            background-color: #fff3e0;
+            border-left: 5px solid #ffa000;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+        
+        .dims-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .dim-card {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .dim-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            height: 200px;
+            background-color: #f5f5f5;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--accent-color);
+            color: var(--muted-text);
+            font-size: 0.95em;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .feature-grid, .advantages-list, .specs-grid, 
+            .dims-grid, .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+        <?php
+    }
+    
+    private function renderProductHeader() {
+        ?>
+        <h1><?= htmlspecialchars($this->productData['title']) ?></h1>
+        <p style="font-size: 1.1em;"><?= htmlspecialchars($this->productData['description']) ?></p>
+        <?php
+    }
+    
+    private function renderFeaturesSection() {
+        ?>
+        <h2><i class="fas fa-info-circle"></i> Основные характеристики</h2>
+        <div class="feature-card">
+            <div class="feature-grid">
+                <?php foreach ($this->productData['features'] as $feature): ?>
+                <div class="feature-item">
+                    <span class="feature-icon"><?= $feature['icon'] ?></span>
+                    <div>
+                        <strong><?= htmlspecialchars($feature['label']) ?>:</strong><br>
+                        <?= htmlspecialchars($feature['value']) ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <h3 style="margin-top: 30px;"><i class="fas fa-ruler"></i> Параметры</h3>
+            <div class="dims-grid">
+                <div class="dim-card">
+                    <div>Диаметр</div>
+                    <div class="dim-value"><?= htmlspecialchars($this->productData['dimensions']['diameter']) ?></div>
+                </div>
+                <div class="dim-card">
+                    <div>Длина</div>
+                    <div class="dim-value"><?= htmlspecialchars($this->productData['dimensions']['length']) ?></div>
+                </div>
+                <div class="dim-card">
+                    <div>Резьба</div>
+                    <div class="dim-value"><?= htmlspecialchars($this->productData['dimensions']['thread_pitch']) ?></div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderAdvantages() {
+        ?>
+        <h2><i class="fas fa-check-circle"></i> Преимущества</h2>
+        <ul class="advantages-list">
+            <?php foreach ($this->productData['advantages'] as $advantage): ?>
+                <li><?= htmlspecialchars($advantage) ?></li>
+            <?php endforeach; ?>
+        </ul>
+        <?php
+    }
+    
+    private function renderTechnicalSpecs() {
+        ?>
+        <h2><i class="fas fa-clipboard-list"></i> Технические характеристики</h2>
+        <div class="specs-grid">
+            <div class="specs-card">
+                <h3><i class="fas fa-flask"></i> Материалы</h3>
+                <?php foreach ($this->technicalSpecs['materials'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="specs-card">
+                <h3><i class="fas fa-tachometer-alt"></i> Эксплуатация</h3>
+                <?php foreach ($this->technicalSpecs['performance'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            
+            <div class="specs-card">
+                <h3><i class="fas fa-box-open"></i> Упаковка</h3>
+                <?php foreach ($this->technicalSpecs['packaging'] as $param => $value): ?>
+                    <div class="specs-item">
+                        <span><?= htmlspecialchars($param) ?>:</span>
+                        <span class="specs-value"><?= htmlspecialchars($value) ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderUsageInstructions() {
+        ?>
+        <h2><i class="fas fa-tools"></i> Инструкция по применению</h2>
+        <div class="usage-steps">
+            <?php foreach ($this->usageInfo as $key => $step): ?>
+                <?php if(strpos($key, 'step') === 0): ?>
+                <div class="usage-step">
+                    <div class="step-number"><?= substr($key, 4) ?></div>
+                    <div><?= htmlspecialchars($step) ?></div>
+                </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+        
+        <div class="tip-box">
+            <i class="fas fa-lightbulb"></i> 
+            <?= htmlspecialchars($this->usageInfo['tip']) ?>
+        </div>
+        
+        <div class="warning-box">
+            <i class="fas fa-exclamation-triangle"></i> 
+            <?= htmlspecialchars($this->usageInfo['warning']) ?>
+        </div>
+        <?php
+    }
+    
+    private function renderGallerySection() {
+        ?>
+        <h2><i class="fas fa-images"></i> Галерея</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://example.com/screws-package.jpg" alt="Упаковка саморезов">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/screw-closeup.jpg" alt="Крупный план самореза">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/screw-installed.jpg" alt="Установленный саморез">
+            </div>
+            <div class="gallery-item">
+                <img src="https://example.com/screw-head.jpg" alt="Потайная головка">
+            </div>
+        </div>
+        <?php
+    }
+    
+    private function renderFooter() {
+        ?>
+        <footer>
+            <p>© <?= date('Y') ?> Фосфатированные саморезы по дереву - надежное крепление для деревянных конструкций.</p>
+        </footer>
+</body>
+</html>
+        <?php
+    }
+}
+
+// Инициализация и отображение страницы
+$screwsPage = new PhosphatedScrewsProduct();
+$screwsPage->renderProductPage();
+?>
+<?php
+/**
+ * Страница с описанием суперклея Akfix 705
+ * 
+ * @version 2.0
+ * @updated 2023-11-15
+ */
+
+class SuperGlueProduct {
+    private $productData;
+    private $technicalSpecs;
+    private $safetyInfo;
+    
+    public function __construct() {
+        $this->initializeProductData();
+    }
+    
+    private function initializeProductData() {
+        $this->productData = [
+            'title' => 'Суперклей Akfix 705 (Турция)',
+            'description' => 'Двухкомпонентный цианоакрилатный клей-гель высокой вязкости для прочного склеивания различных материалов.',
+            'features' => [
+                'type' => ['label' => 'Тип', 'value' => 'Двухкомпонентный цианоакрилатный', 'icon' => '🧪'],
+                'viscosity' => ['label' => 'Консистенция', 'value' => 'Вязкий гель', 'icon' => '🌀'],
+                'color' => ['label' => 'Цвет', 'value' => 'Прозрачный', 'icon' => '🔍'],
+                'components' => ['label' => 'Компоненты', 'value' => 'Клей + активатор', 'icon' => '⚗️'],
+                'package' => ['label' => 'Упаковка', 'value' => 'Клей (65 г) + аэрозоль (200 мл)', 'icon' => '📦'],
+                'drying' => ['label' => 'Схватывание', 'value' => 'Быстрое', 'icon' => '⏱️'],
+                'materials' => ['label' => 'Материалы', 'value' => 'Дерево, пластик, кожа, бумага', 'icon' => '🛠️']
+            ],
+            'advantages' => [
+                'Высокая прочность соединения',
+                'Быстрое схватывание',
+                'Вязкая консистенция не стекает',
+                'Влаго- и морозостойкость',
+                'Универсальное применение',
+                'Эффективен для пористых поверхностей',
+                'Комплект из двух компонентов',
+                'Удобная упаковка'
+            ],
+            'properties' => [
+                'Прочность склеивания' => 'Очень высокая',
+                'Время схватывания' => 'От 30 секунд',
+                'Полное отверждение' => '24 часа',
+                'Температурный режим' => 'От -30°C до +80°C'
+            ]
+        ];
+        
+        $this->technicalSpecs = [
+            'composition' => [
+                'Основной компонент' => 'Цианоакрилатный гель',
+                'Активатор' => 'Аэрозольный состав',
+                'Добавки' => 'Стабилизаторы, загустители'
+            ],
+            'application' => [
+                'Толщина слоя' => '0,1-0,3 мм',
+                'Рекомендуемая температура' => '+15°C до +25°C',
+                'Срок хранения' => '12 месяцев',
+                'Расход' => '~10 м/п на 50 г'
+            ],
+            'compatibility' => [
+                'Дерево' => 'Отлично',
+                'Пластики' => 'Хорошо (кроме PE, PP)',
+                'Кожа' => 'Очень хорошо',
+                'Металлы' => 'Требуется праймер'
+            ]
+        ];
+        
+        $this->safetyInfo = [
+            'warning' => 'Состав горючий, обладает сильным запахом',
+            'precautions' => [
+                'Обеспечьте хорошую вентиляцию',
+                'Избегайте контакта с кожей и глазами',
+                'Используйте перчатки и очки',
+                'Храните в недоступном для детей месте'
+            ],
+            'first_aid' => [
+                'При попадании в глаза' => 'Промыть водой 15 мин, обратиться к врачу',
+                'На коже' => 'Промыть с мылом, не использовать растворители',
+                'Проглатывание' => 'Немедленно к врачу'
+            ]
+        ];
+    }
+    
+    public function renderProductPage() {
+        $this->renderHTMLHeader();
+        $this->renderProductHeader();
+        $this->renderFeaturesSection();
+        $this->renderProperties();
+        $this->renderAdvantages();
+        $this->renderTechnicalSpecs();
+        $this->renderSafetyInfo();
+        $this->renderGallerySection();
+        $this->renderFooter();
+    }
+    
+    private function renderHTMLHeader() {
+        ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= htmlspecialchars($this->productData['description']) ?>">
+    <title><?= htmlspecialchars($this->productData['title']) ?> | Технические характеристики</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #006064;
+            --secondary-color: #00838f;
+            --accent-color: #b2ebf2;
+            --light-bg: #e0f7fa;
+            --text-color: #004d40;
+            --muted-text: #00796b;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-top: 1.8em;
+        }
+        
+        h1 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            margin: 35px 0 20px;
+        }
+        
+        .feature-card {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 1.8em;
+            color: var(--secondary-color);
+            min-width: 40px;
+            text-align: center;
+        }
+        
+        .props-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .prop-card {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .prop-value {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+        
+        .advantages-list {
+            margin: 30px 0;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .advantages-list li {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 40px;
+            list-style: none;
+            font-size: 1.05em;
+        }
+        
+        .advantages-list li:before {
+            content: "✓";
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .specs-card {
+            background-color: var(--light-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+        }
+        
+        .specs-card h3 {
+            margin-top: 0;
+            color: var(--secondary-color);
+            border-bottom: 1px dashed var(--secondary-color);
+            padding-bottom: 10px;
+        }
