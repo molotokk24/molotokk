@@ -774,7 +774,7 @@ $laminatePage->renderProductPage();
  * Страница с описанием хвойной подложки 3 мм
  * 
  * 
- * @updated 2023-11-15
+ * 
  */
 
 class UnderlayProduct {
@@ -3499,8 +3499,8 @@ $screwsPage->renderProductPage();
 /**
  * Страница с описанием суперклея Akfix 705
  * 
- * @version 2.0
- * @updated 2023-11-15
+ * 
+ * 
  */
 
 class SuperGlueProduct {
