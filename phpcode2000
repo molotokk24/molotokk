@@ -3994,3 +3994,332 @@ class SuperGlueProduct {
 $gluePage = new SuperGlueProduct();
 $gluePage->renderProductPage();
 ?>
+<?php
+/**
+ * Страница с описанием быстротвердеющего наливного пола с калькулятором
+ * 
+ * 
+ *
+ */
+
+class FloorProduct {
+    private $productData;
+    private $technicalSpecs;
+    private $applicationInfo;
+    
+    public function __construct() {
+        $this->initializeProductData();
+    }
+    
+    private function initializeProductData() {
+        $this->productData = [
+            'title' => 'Быстротвердеющий наливной пол для ручного и машинного выравнивания',
+            'description' => 'Высокопрочная смесь для выравнивания бетонных полов и цементных стяжек с армирующими волокнами, подходит для систем "Тёплый пол" и "Плавающий пол".',
+            'productCode' => 'NP-2023-F',
+            'consumption' => 1.6, // кг/м² на 1 мм толщины
+            'bagWeight' => 20, // кг в мешке
+            'features' => [
+                'application' => ['label' => 'Применение', 'value' => 'Ручное и машинное выравнивание', 'icon' => '🛠️'],
+                'layer' => ['label' => 'Слой нанесения', 'value' => '3-100 мм', 'icon' => '📏'],
+                'drying' => ['label' => 'Хождение по полу', 'value' => 'Через 2 часа', 'icon' => '⏱️'],
+                'strength' => ['label' => 'Прочность', 'value' => '200 кг/см²', 'icon' => '💪'],
+                'fibers' => ['label' => 'Армирование', 'value' => 'Усилен волокнами', 'icon' => '🔄'],
+                'tiles' => ['label' => 'Укладка плитки', 'value' => 'Через 24 часа', 'icon' => '🧱'],
+                'base' => ['label' => 'Основание', 'value' => 'Бетон, цементные стяжки', 'icon' => '🏗️'],
+                'systems' => ['label' => 'Системы', 'value' => '"Тёплый пол", "Плавающий пол"', 'icon' => '🔥']
+            ],
+            'advantages' => [
+                'Быстрое высыхание - хождение через 2 часа',
+                'Высокая прочность до 200 кг/см²',
+                'Армирование волокнами против трещин',
+                'Подходит для систем "Тёплый пол"',
+                'Можно наносить слоем от 3 до 100 мм',
+                'Для всех типов напольных покрытий',
+                'Применение в помещениях с повышенной влажностью',
+                'Минимальная усадка при высыхании'
+            ],
+            'compatibility' => [
+                'Линолеум', 'Ковролин', 'Керамическая плитка', 
+                'Ламинат', 'Паркет', 'Паркетная доска'
+            ]
+        ];
+        
+        $this->technicalSpecs = [
+            'composition' => [
+                'Основа' => 'Цементная',
+                'Наполнители' => 'Минеральные',
+                'Модификаторы' => 'Полимерные',
+                'Армирование' => 'Фибра'
+            ],
+            'performance' => [
+                'Прочность на сжатие' => '200 кг/см²',
+                'Адгезия к бетону' => '≥1 МПа',
+                'Расход' => '1.6 кг/м² на 1 мм',
+                'Жизнеспособность' => '40 минут',
+                'Гарантия' => '12 месяцев',
+                'Срок хранения' => '12 месяцев'
+            ],
+            'application' => [
+                'Температура основания' => '+5°C до +30°C',
+                'Температура воздуха' => '+10°C до +25°C',
+                'Влажность основания' => 'Не более 4%',
+                'Возраст основания' => 'Не менее 28 суток'
+            ]
+        ];
+        
+        $this->applicationInfo = [
+            'step1' => 'Подготовить основание: очистить, обеспылить, загрунтовать',
+            'step2' => 'Приготовить раствор согласно инструкции',
+            'step3' => 'Нанести смесь, начиная с дальнего угла помещения',
+            'step4' => 'Разровнять смесь зубчатым шпателем или раклей',
+            'step5' => 'Прокатать игольчатым валиком для удаления пузырьков воздуха',
+            'step6' => 'Выдержать необходимое время до полного высыхания',
+            'tip' => 'Для лучшего результата используйте грунтовку глубокого проникновения',
+            'warning' => 'Не допускайте сквозняков и прямого солнечного света в первые 24 часа'
+        ];
+    }
+    
+    public function renderProductPage() {
+        $this->renderHTMLHeader();
+        $this->renderProductHeader();
+        $this->renderCalculatorSection(); // Добавляем калькулятор
+        $this->renderFeaturesSection();
+        $this->renderAdvantages();
+        $this->renderTechnicalSpecs();
+        $this->renderApplication();
+        $this->renderCompatibility();
+        $this->renderGallerySection();
+        $this->renderFooter();
+    }
+
+    private function renderCalculatorSection() {
+        // Обработка данных формы
+        $length = isset($_POST['length']) ? (float)$_POST['length'] : 0;
+        $width = isset($_POST['width']) ? (float)$_POST['width'] : 0;
+        $thickness = isset($_POST['thickness']) ? (float)$_POST['thickness'] : 10;
+        
+        // Проверка минимальных значений
+        if ($length < 0.1) $length = 0;
+        if ($width < 0.1) $width = 0;
+        if ($thickness < 3) $thickness = 3;
+        if ($thickness > 100) $thickness = 100;
+        
+        $showResults = false;
+        $area = 0;
+        $totalConsumption = 0;
+        $bagsNeeded = 0;
+        
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && $length > 0 && $width > 0) {
+            $showResults = true;
+            $area = $length * $width;
+            $totalConsumption = $area * $thickness * $this->productData['consumption'];
+            $bagsNeeded = ceil($totalConsumption / $this->productData['bagWeight']);
+        }
+        ?>
+        <h2><i class="fas fa-calculator"></i> Калькулятор расхода</h2>
+        <div class="calculator-card">
+            <form method="post" class="calculator-form">
+                <div class="calculator-grid">
+                    <div class="calculator-input">
+                        <label for="length">Длина помещения (м):</label>
+                        <input type="number" step="0.1" min="0.1" id="length" name="length" 
+                               value="<?= htmlspecialchars($length > 0 ? $length : '') ?>" required>
+                    </div>
+                    
+                    <div class="calculator-input">
+                        <label for="width">Ширина помещения (м):</label>
+                        <input type="number" step="0.1" min="0.1" id="width" name="width" 
+                               value="<?= htmlspecialchars($width > 0 ? $width : '') ?>" required>
+                    </div>
+                    
+                    <div class="calculator-input">
+                        <label for="thickness">Толщина слоя (мм):</label>
+                        <input type="number" step="1" min="3" max="100" id="thickness" name="thickness" 
+                               value="<?= htmlspecialchars($thickness) ?>" required>
+                    </div>
+                    
+                    <div class="calculator-submit">
+                        <button type="submit">Рассчитать</button>
+                    </div>
+                </div>
+            </form>
+            
+            <?php if ($showResults): ?>
+            <div class="calculator-results">
+                <h3>Результаты расчета:</h3>
+                <div class="result-item">
+                    <span>Площадь помещения:</span>
+                    <strong><?= round($area, 2) ?> м²</strong>
+                </div>
+                <div class="result-item">
+                    <span>Необходимое количество смеси:</span>
+                    <strong><?= round($totalConsumption, 1) ?> кг</strong>
+                </div>
+                <div class="result-item">
+                    <span>Количество мешков по <?= $this->productData['bagWeight'] ?> кг:</span>
+                    <strong><?= $bagsNeeded ?> шт.</strong>
+                </div>
+                <div class="result-note">
+                    <i class="fas fa-info-circle"></i> Расход указан из расчета <?= $this->productData['consumption'] ?> кг/м² на 1 мм толщины
+                </div>
+            </div>
+            <?php endif; ?>
+        </div>
+        <?php
+    }
+
+    private function renderHTMLHeader() {
+        ?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= htmlspecialchars($this->productData['description']) ?>">
+    <title><?= htmlspecialchars($this->productData['title']) ?> | Описание</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #5d4037;
+            --secondary-color: #8d6e63;
+            --accent-color: #d7ccc8;
+            --light-bg: #efebe9;
+            --text-color: #3e2723;
+            --muted-text: #6d4c41;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-top: 1.8em;
+        }
+        
+        h1 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            margin: 35px 0 20px;
+        }
+        
+        .product-code {
+            background-color: var(--light-bg);
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: var(--muted-text);
+        }
+        
+        /* Стили для калькулятора */
+        .calculator-card {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 22px;
+        }
+        
+        .calculator-input {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .calculator-input label {
+            margin-bottom: 8px;
+            font-weight: 501;
+        }
+        
+        .calculator-input input {
+            padding: 12px;
+            border: 1px solid var(--accent-color);
+            border-radius: 6px;
+            font-size: 1em;
+        }
+        
+        .calculator-submit button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+            align-self: flex-end;
+        }
+        
+        .calculator-submit button:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .calculator-results {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        .result-item strong {
+            color: var(--primary-color);
+        }
+        
+        .result-note {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: var(--muted-text);
+        }
+        
+        /* Остальные стили без изменений */
+        .feature-card {
+            background-color: var(--light-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.9);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
