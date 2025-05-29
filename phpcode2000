@@ -4323,7 +4323,8 @@ class FloorProduct {
             border-radius: 7px;
             transition: all 0.3s ease;
         }
-.feature-item:hover {
+
+        .feature-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0,0,0,0.1);
         }
