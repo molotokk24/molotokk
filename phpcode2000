@@ -4021,7 +4021,7 @@ class FloorProduct {
             'features' => [
                 'application' => ['label' => 'Применение', 'value' => 'Ручное и машинное выравнивание', 'icon' => '🛠️'],
                 'layer' => ['label' => 'Слой нанесения', 'value' => '3-100 мм', 'icon' => '📏'],
-                'drying' => ['label' => 'Хождение по полу', 'value' => 'Через 2 часа', 'icon' => '⏱️'],
+                'drying' => ['label' => 'Хождение по полу', 'value' => 'Через 3 часа', 'icon' => '⏱️'],
                 'strength' => ['label' => 'Прочность', 'value' => '200 кг/см²', 'icon' => '💪'],
                 'fibers' => ['label' => 'Армирование', 'value' => 'Усилен волокнами', 'icon' => '🔄'],
                 'tiles' => ['label' => 'Укладка плитки', 'value' => 'Через 24 часа', 'icon' => '🧱'],
@@ -4276,9 +4276,9 @@ class FloorProduct {
         
         .calculator-results {
             background-color: white;
-            padding: 20px;
+            padding: 21px;
             border-radius: 8px;
-            margin-top: 20px;
+            margin-top: 19px;
         }
         
         .result-item {
@@ -4320,6 +4320,6 @@ class FloorProduct {
             gap: 20px;
             padding: 15px;
             background-color: rgba(255,255,255,0.9);
-            border-radius: 8px;
+            border-radius: 7px;
             transition: all 0.3s ease;
         }
